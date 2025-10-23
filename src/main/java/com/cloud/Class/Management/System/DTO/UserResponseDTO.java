@@ -1,27 +1,18 @@
-package com.cloud.Class.Management.System.Entity;
+package com.cloud.Class.Management.System.DTO;
 
 
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
+public class UserResponseDTO {
     private String userId;
     private String role;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
-
