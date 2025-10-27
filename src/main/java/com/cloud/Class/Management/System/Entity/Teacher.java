@@ -1,12 +1,19 @@
 package com.cloud.Class.Management.System.Entity;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
+    private String teacherId;
+    private String departmentId;
+    private String staffNo;
+    private String title;
 }
 
-//teacher_id (PK, also FK → User)
-//
-//department_id (FK → Department)
-//
-//staff_no
-//
-//title (optional)

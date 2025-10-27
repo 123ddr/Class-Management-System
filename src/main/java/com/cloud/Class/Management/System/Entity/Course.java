@@ -1,14 +1,19 @@
 package com.cloud.Class.Management.System.Entity;
 
-public class Course {
-}
 
-//course_id (PK)
-//
-//department_id (FK → Department)
-//
-//code
-//
-//name
-//
-//credits
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Course {
+    private String courseId;
+    private String departmentId;
+    private String courseCode;
+    private String courseName;
+    private int credits;
+}
