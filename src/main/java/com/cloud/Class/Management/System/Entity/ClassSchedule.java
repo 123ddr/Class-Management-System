@@ -1,22 +1,25 @@
 package com.cloud.Class.Management.System.Entity;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClassSchedule {
+    private String scheduleId;
+    private String batchId;
+    private String courseId;
+    private String teacherId;
+    private String classroomId;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String recurrenceRule;
 }
 
-//schedule_id (PK)
-//
-//batch_id (FK → Batch)
-//
-//course_id (FK → Course)
-//
-//teacher_id (FK → Teacher)
-//
-//classroom_id (FK → Classroom)
-//
-//start_time
-//
-//end_time
-//
-//recurrence_rule (optional)
-//
-//created_by (FK → User)

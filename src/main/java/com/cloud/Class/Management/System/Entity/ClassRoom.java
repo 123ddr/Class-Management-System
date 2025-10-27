@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher {
-    private String teacherId;
-    private String departmentId;
-    private String staffNo;
-    private String title;
+public class ClassRoom {
+    private String classroomId;
+    private String roomCode;
+    private String building;
+    private String capacity;
+    private String features;
 }
 
