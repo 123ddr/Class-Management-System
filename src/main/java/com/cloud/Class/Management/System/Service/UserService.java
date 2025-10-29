@@ -6,13 +6,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import com.google.firebase.auth.UserRecord;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
+
+    private final FirebaseAuth firebaseAuth;
 
     // SIGNUP (create user in Firebase Auth)
     public String signup(String email, String password, String firstName, String lastName, String role) {
@@ -25,12 +29,12 @@ public class UserService {
                     .setEmailVerified(false)
                     .setDisabled(false);
 
-            UserRecord userRecord = FirebaseAuth.getInstance().createUser(request);
+            UserRecord userRecord = firebaseAuth.createUser(request);
             System.out.println("Firebase user created successfully with UID: " + userRecord.getUid());
 
             // Step 2: Set custom claims safely
             try {
-                FirebaseAuth.getInstance().setCustomUserClaims(userRecord.getUid(), Map.of("role", role));
+                firebaseAuth.setCustomUserClaims(userRecord.getUid(), Map.of("role", role));
                 System.out.println("Custom claims set successfully for UID: " + userRecord.getUid());
             } catch (FirebaseAuthException claimEx) {
                 // Catch and log detailed error if 403 occurs here
@@ -55,7 +59,7 @@ public class UserService {
     // VERIFY TOKEN (decode token from frontend)
     public String verifyToken(String idToken) {
         try {
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);
+            FirebaseToken decodedToken = firebaseAuth.verifyIdToken(idToken);
             String uid = decodedToken.getUid();
             String email = decodedToken.getEmail();
             String role = (String) decodedToken.getClaims().get("role");

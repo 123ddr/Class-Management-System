@@ -6,7 +6,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.cloud.FirestoreClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,13 +14,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Repository
+@RequiredArgsConstructor
 public class ClassScheduleRepository {
 
-    private final String COLLECTION_NAME = "class_schedules";
+    private static final String COLLECTION_NAME = "class_schedules";
+
+    private final Firestore firestore;
 
     private CollectionReference getCollection() {
-        Firestore db = FirestoreClient.getFirestore();
-        return db.collection(COLLECTION_NAME);
+        return firestore.collection(COLLECTION_NAME);
     }
 
     public String saveClassSchedule(ClassSchedule schedule) throws ExecutionException, InterruptedException {
